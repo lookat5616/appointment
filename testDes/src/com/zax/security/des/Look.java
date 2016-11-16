@@ -10,6 +10,7 @@ public class Look {
 		list.add("12");
 		list.add("13");
 		list.add("14");
+		list.add("15");
         for (String str : list) {
 			System.out.println(str);
 		}
