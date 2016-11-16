@@ -11,6 +11,7 @@ public class Look {
 		list.add("13");
 		list.add("14");
 		list.add("15");
+		list.add("16");
         for (String str : list) {
 			System.out.println(str);
 		}
