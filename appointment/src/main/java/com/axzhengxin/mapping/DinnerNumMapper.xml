@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.axzhengxin.dao.DinnerNumMapper" >
+  <resultMap id="BaseResultMap" type="com.axzhengxin.dto.DinnerNum" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dinnerNum" property="dinnernum" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="bak" property="bak" jdbcType="VARCHAR" />
+    <result column="bak1" property="bak1" jdbcType="VARCHAR" />
+    <result column="bak2" property="bak2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dinnerNum, date, bak, bak1, bak2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dinnernum
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getDinnerNum" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dinnernum
+    where date <![CDATA[>=]]> curdate()
+  </select>
+  <select id="getDbDate" resultType="java.util.Date">
+    select curdate() from dual
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dinnernum
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.axzhengxin.dto.DinnerNum" >
+    insert into dinnernum (id, dinnerNum, date, 
+      bak, bak1, bak2)
+    values (#{id,jdbcType=INTEGER}, #{dinnernum,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, 
+      #{bak,jdbcType=VARCHAR}, #{bak1,jdbcType=VARCHAR}, #{bak2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.axzhengxin.dto.DinnerNum" >
+    insert into dinnernum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dinnernum != null" >
+        dinnerNum,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="bak != null" >
+        bak,
+      </if>
+      <if test="bak1 != null" >
+        bak1,
+      </if>
+      <if test="bak2 != null" >
+        bak2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dinnernum != null" >
+        #{dinnernum,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bak != null" >
+        #{bak,jdbcType=VARCHAR},
+      </if>
+      <if test="bak1 != null" >
+        #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        #{bak2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.axzhengxin.dto.DinnerNum" >
+    update dinnernum
+    <set >
+      <if test="dinnernum != null" >
+        dinnerNum = #{dinnernum,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bak != null" >
+        bak = #{bak,jdbcType=VARCHAR},
+      </if>
+      <if test="bak1 != null" >
+        bak1 = #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        bak2 = #{bak2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.axzhengxin.dto.DinnerNum" >
+    update dinnernum
+    set dinnerNum = #{dinnernum,jdbcType=INTEGER},
+      date = #{date,jdbcType=TIMESTAMP},
+      bak = #{bak,jdbcType=VARCHAR},
+      bak1 = #{bak1,jdbcType=VARCHAR},
+      bak2 = #{bak2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

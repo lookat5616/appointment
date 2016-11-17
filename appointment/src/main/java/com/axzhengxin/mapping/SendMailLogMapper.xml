@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.axzhengxin.dao.SendMailLogMapper" >
+  <resultMap id="BaseResultMap" type="com.axzhengxin.dto.SendMailLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="send_url" property="sendUrl" jdbcType="VARCHAR" />
+    <result column="sand_name" property="sandName" jdbcType="VARCHAR" />
+    <result column="from_mail" property="fromMail" jdbcType="VARCHAR" />
+    <result column="sand_mail" property="sandMail" jdbcType="VARCHAR" />
+    <result column="is_suss" property="isSuss" jdbcType="VARCHAR" />
+    <result column="open_time" property="openTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, send_time, send_url, sand_name, from_mail, sand_mail, is_suss, open_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from send_mail_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from send_mail_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.axzhengxin.dto.SendMailLog" >
+    insert into send_mail_log (id, send_time, send_url, 
+      sand_name, from_mail, sand_mail, 
+      is_suss, open_time)
+    values (#{id,jdbcType=INTEGER}, #{sendTime,jdbcType=TIMESTAMP}, #{sendUrl,jdbcType=VARCHAR}, 
+      #{sandName,jdbcType=VARCHAR}, #{fromMail,jdbcType=VARCHAR}, #{sandMail,jdbcType=VARCHAR}, 
+      #{isSuss,jdbcType=VARCHAR}, #{openTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.axzhengxin.dto.SendMailLog" >
+    insert into send_mail_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="sendUrl != null" >
+        send_url,
+      </if>
+      <if test="sandName != null" >
+        sand_name,
+      </if>
+      <if test="fromMail != null" >
+        from_mail,
+      </if>
+      <if test="sandMail != null" >
+        sand_mail,
+      </if>
+      <if test="isSuss != null" >
+        is_suss,
+      </if>
+      <if test="openTime != null" >
+        open_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendUrl != null" >
+        #{sendUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandName != null" >
+        #{sandName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromMail != null" >
+        #{fromMail,jdbcType=VARCHAR},
+      </if>
+      <if test="sandMail != null" >
+        #{sandMail,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuss != null" >
+        #{isSuss,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.axzhengxin.dto.SendMailLog" >
+    update send_mail_log
+    <set >
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendUrl != null" >
+        send_url = #{sendUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sandName != null" >
+        sand_name = #{sandName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromMail != null" >
+        from_mail = #{fromMail,jdbcType=VARCHAR},
+      </if>
+      <if test="sandMail != null" >
+        sand_mail = #{sandMail,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuss != null" >
+        is_suss = #{isSuss,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        open_time = #{openTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.axzhengxin.dto.SendMailLog" >
+    update send_mail_log
+    set send_time = #{sendTime,jdbcType=TIMESTAMP},
+      send_url = #{sendUrl,jdbcType=VARCHAR},
+      sand_name = #{sandName,jdbcType=VARCHAR},
+      from_mail = #{fromMail,jdbcType=VARCHAR},
+      sand_mail = #{sandMail,jdbcType=VARCHAR},
+      is_suss = #{isSuss,jdbcType=VARCHAR},
+      open_time = #{openTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
